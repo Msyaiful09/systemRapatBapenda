@@ -14,31 +14,16 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-white" href="/rooms">Ruangan</a>
-                        <ul class="nav flex-column ms-3">
-                            <li class="nav-item">
-                                <a class="nav-link text-white" href="#">Lihat Antrean Ruangan</a>
-                            </li>
-                        </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="#">Jadwal Rapat</a>
-                        <ul class="nav flex-column ms-3">
-                            <li class="nav-item">
-                                <a class="nav-link text-white" href="#">Lihat Jadwal Rapat</a>
-                            </li>
-                        </ul>
+                        <a class="nav-link text-white" href="/jadwal">Jadwal Rapat</a>
+                        
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-white" href="#">Karyawan</a>
-                        <ul class="nav flex-column ms-3">
-                            <li class="nav-item">
-                                <a class="nav-link text-white" href="#">Lihat Karyawan</a>
-                            </li>
-                        </ul>
+                        
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="#">Logout</a>
-                    </li>
+                   
                 </ul>
             </div>
         </div>
@@ -60,20 +45,58 @@
                             <tbody>
                                 <tr>
                                     <td>1</td>
-                                    <td>Ruang Rapat A</td>
+                                    <td>Ruang Rapat Besar</td>
                                     <td>Terpakai</td>
                                     <td>09:00 - 11:00</td>
                                 </tr>
                                 <tr>
                                     <td>2</td>
-                                    <td>Ruang Rapat B</td>
+                                    <td>Ruang Rapat Kecil</td>
                                     <td>Tersedia</td>
                                     <td>-</td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
+                    
                 </div>
+                <div class="card mt-4">
+                    <div class="card-header bg-success text-white">Jadwal Rapat</div>
+                    <div class="card-body">
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Hari/Tanggal</th>
+                                <th>Jam Mulai</th>
+                                <th>Jam Selesai</th>
+                                <th>Acara</th>
+                                <th>Tempat</th>
+                                <th>Keterangan</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Senin, 12 Desember 2024</td>
+                                <td>09:00</td>
+                                <td>12:00</td>
+                                <td>Rapat Koordinasi</td>
+                                <td>Ruang Rapat Kecil</td>
+                                <td>Pembahasan program 2025</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Selasa, 13 Desember 2024</td>
+                                <td>07:00</td>
+                                <td>12:00</td>
+                                <td>undangan pemet peningkatan kapentas dan kapasilitas tentang management </td>
+                                <td>Hotel jogjakarta  </td>
+                                <td></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
             </div>
         </div>
     </div>
