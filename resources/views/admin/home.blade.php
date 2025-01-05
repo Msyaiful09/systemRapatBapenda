@@ -58,7 +58,7 @@
                 <div id="ruangan" class="card mt-4">
                     <div class="card-header bg-success text-white">Daftar Ruangan</div>
                         <div class="card-body">
-                            <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#ruangan">Tambah Ruangan Baru</button>
+                            <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#ruanganModal">Tambah Ruangan Baru</button>
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
@@ -161,7 +161,7 @@
                     </div>
                 </div>
 
-                <div id="karyawan" class="card mt-4">
+                {{-- <div id="karyawan" class="card mt-4">
                         <div class="card-header bg-success text-white">List Karyawan</div>
                             <div class="card-body">
                                 <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#bookingRuangan">Tambah Akun Karyawan</button>
@@ -191,11 +191,11 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
     </div>
 
     {{-- modal --}}
-    <div class="modal fade" id="ruangan" tabindex="-1" aria-labelledby="tambahRuanganModalLabel" aria-hidden="true">
+    <div class="modal fade" id="ruanganModal" tabindex="-1" aria-labelledby="tambahRuanganModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
