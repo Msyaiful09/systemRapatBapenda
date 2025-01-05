@@ -95,7 +95,7 @@
             <h4>BAPENDA Kota Pontianak</h4>
         </div>
         <div class="nav-item">
-            <a href="#" id="dashboard-link"><i class="fas fa-home me-2"></i> Beranda</a>
+            <a href="#" id="beranda"><i class="fas fa-home me-2"></i> Beranda</a>
         </div>
         <div class="nav-item">
             <a href="#"><i class="fas fa-door-open me-2"></i> Ruangan</a>
@@ -286,18 +286,25 @@
                 }
             });
         }
+        document.getElementById('beranda').addEventListener('click', function() {
+            document.getElementById('ruangan-section').style.display = 'block';
+            // document.getElementById('beranda-section').style.display = 'none';
+            document.getElementById('jadwal-ruangan-section').style.display = 'block';
+            // document.getElementById('karyawan-section').style.display = 'none';
+        });
+
         document.getElementById('lihat-ruangan').addEventListener('click', function() {
             document.getElementById('ruangan-section').style.display = 'block';
             // document.getElementById('beranda-section').style.display = 'none';
             document.getElementById('jadwal-ruangan-section').style.display = 'none';
-            document.getElementById('karyawan-section').style.display = 'none';
+            // document.getElementById('karyawan-section').style.display = 'none';
         });
 
         document.getElementById('lihat-jadwal-ruangan').addEventListener('click', function() {
             document.getElementById('jadwal-ruangan-section').style.display = 'block';
             // document.getElementById('beranda-section').style.display = 'none';
             document.getElementById('ruangan-section').style.display = 'none';
-            document.getElementById('karyawan-section').style.display = 'none';
+            // document.getElementById('karyawan-section').style.display = 'none';
         });
     </script>
 </body>
