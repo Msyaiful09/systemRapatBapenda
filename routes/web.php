@@ -2,22 +2,25 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoomController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\Auth\LoginController as LC;
-
-Route::get('/', function () {
-    return redirect()->route('home');
-});
+use App\Http\Controllers\Auth\LoginController;
+use Illuminate\Support\Facades\Auth;
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', function () {
+    return view('welcome');
+})->name('home');
 
-Route::middleware(['auth'])->group(function () {
-    Route::resource('rooms', RoomController::class);
-    Route::resource('bookings', BookingController::class);
-    Route::resource('admin', AdminController::class);
-});
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-Route::POST('/loginUrl', [LC::class, 'login'])->name('loginUrl');
+Route::post('/dashboard/konfirmasi/{id}', [BookingController::class, 'konfirmasiJadwal'])->name('konfirmasiBooking');
+Route::post('/dashboard/tolak/{id}', [BookingController::class, 'tolakJadwal'])->name('tolakBooking');
+
+Route::resource('rooms', RoomController::class);
+Route::resource('bookings', BookingController::class);
+Route::resource('admin', AdminController::class);
+
+Route::POST('/loginUrl', [LoginController::class, 'login'])->name('loginUrl');

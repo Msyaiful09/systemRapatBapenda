@@ -18,10 +18,10 @@ return new class extends Migration
             $table->date('booking_date');
             $table->time('start_time');
             $table->time('end_time');
-            $table->enum('status', ['pending', 'confirmed', 'rejected']);
+            $table->enum('status', ['pending', 'confirmed', 'rejected'])->default('pending');
             $table->timestamps();
         });
-        
+
     }
 
     /**

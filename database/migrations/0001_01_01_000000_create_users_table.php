@@ -16,10 +16,10 @@ return new class extends Migration
             $table->string('nip')->unique();
             $table->string('name');
             $table->string('password');
-            $table->string('role'); // 'admin' atau 'employee'
+            $table->enum('role',['admin','karyawan']);
             $table->timestamps();
         });
-        
+
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
             $table->string('email')->primary();

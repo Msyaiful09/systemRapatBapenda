@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Room;
+use Illuminate\Support\Facades\Auth;
 
 class RoomController extends Controller
 {
@@ -13,7 +14,7 @@ class RoomController extends Controller
     public function index()
     {
         $data = Room::all();
-        return view('room.index', compact('data'));
+        return view('admin.room.index', compact('data'));
     }
 
     /**
@@ -21,7 +22,7 @@ class RoomController extends Controller
      */
     public function create()
     {
-        return view('room.create');
+        return view('admin.room.create');
     }
 
     /**
@@ -40,8 +41,8 @@ class RoomController extends Controller
             'location' => $request->location,
             'capacity' => $request->capacity,
         ]);
-        
-        return redirect()->route('rooms.index')->with('success', 'Room created successfully.');
+
+        return redirect()->back()->with('success', 'Data Ruangan Berhasil Ditambahkan.');
     }
 
     /**
@@ -50,7 +51,7 @@ class RoomController extends Controller
     public function show(string $id)
     {
         $data = Room::find($id);
-        return view('rooms.show', compact($data));
+        return view('admin.room.show', compact($data));
     }
 
     /**
@@ -59,7 +60,7 @@ class RoomController extends Controller
     public function edit(string $id)
     {
         $data = Room::find($id);
-        return view('room.edit')->with('data', $data);
+        return view('admin.room.edit')->with('data', $data);
     }
 
     /**
@@ -78,8 +79,8 @@ class RoomController extends Controller
         $room->location = $request->location;
         $room->capacity = $request->capacity;
         $room->save();
-        
-        return redirect()->route('rooms.index')->with('success', 'Room updated successfully.');
+
+        return redirect()->back()->with('success', 'Data Ruangan Berhasil Di Perbaharui.');
     }
 
     /**
@@ -90,6 +91,6 @@ class RoomController extends Controller
         $data = Room::findOrFail($id);
         $data->delete();
 
-        return redirect()->route('rooms.index')->with('success', 'Room deleted successfully.');
+        return redirect()->back()->with('success', 'Data Ruangan berhasil Di Hapus.');
     }
 }

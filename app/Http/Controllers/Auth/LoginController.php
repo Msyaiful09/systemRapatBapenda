@@ -26,7 +26,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/dashboard';
 
     /**
      * Create a new controller instance.
@@ -46,7 +46,7 @@ class LoginController extends Controller
         ]);
 
         if (Auth::attempt(request(['nip', 'password']))) {
-            return redirect()->intended('/home');
+            return redirect()->intended('/dashboard');
         }
 
         return back()->withInput(request(['nip']))->withErrors(['password' => 'Username atau nip salah']);
