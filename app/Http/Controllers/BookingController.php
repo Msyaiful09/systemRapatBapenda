@@ -38,7 +38,7 @@ class BookingController extends Controller
         if(Auth::user()->role == 'admin') {
             $status = 'confirmed';
         } else {
-            $status = $request->status;
+            $status = 'pending';
         }
         Booking::create([
             'user_id' => Auth::user()->id,
