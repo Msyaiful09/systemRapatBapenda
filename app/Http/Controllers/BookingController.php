@@ -82,6 +82,9 @@ class BookingController extends Controller
     public function destroy(string $id)
     {
         $data = Booking::findOrFail($id);
+        $data->delete();
+
+        return redirect()->back()->with('success', 'Data berhasil di Hapus!');
     }
 
     public function konfirmasiJadwal(String $id) {
@@ -89,7 +92,7 @@ class BookingController extends Controller
         if ($data) {
             $data->status = 'confirmed';
             $data->save();
-            return redirect()->back()->with('success', 'Data berhasil di konfirmasi');
+            return redirect()->back()->with('success', 'Data berhasil di konfirmasi!');
         }
         return redirect()->back()->with('error', 'Data gagal di konfirmasi');
     }
