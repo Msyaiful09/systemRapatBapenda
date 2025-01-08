@@ -19,6 +19,8 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
 Route::post('/dashboard/konfirmasi/{id}', [BookingController::class, 'konfirmasiJadwal'])->name('konfirmasiBooking');
 Route::post('/dashboard/tolak/{id}', [BookingController::class, 'tolakJadwal'])->name('tolakBooking');
 
+Route::POST('/dashboard/update-ruangan', [RoomController::class, 'update'])->name('updateRoom');
+
 Route::resource('rooms', RoomController::class);
 Route::resource('bookings', BookingController::class);
 Route::resource('admin', AdminController::class);

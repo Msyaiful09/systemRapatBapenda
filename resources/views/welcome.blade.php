@@ -157,8 +157,8 @@
         <div class="container">
             <h4>Kontak Kami</h4>
             <p>Jl. Letnan Jendral Soetoyo, Kelurahan Parit Tokaya, Kec. Pontianak Selatan, Kota Pontianak, Kalimantan Barat 78113</p>
-            <p>WhatsApp: 0813-5116-4128 | E-mail: <a href="mailto:bappenda@pontianak.go.id">bappenda@pontianak.go.id</a></p>
-            <p>Instagram: bappenda.pontianak | Website: <a href="https://bappenda.pontianak.go.id">bappenda.pontianak.go.id</a></p>
+            <p>WhatsApp: 0813-5116-4128 </p>
+            <p>Instagram: bappenda.pontianak | Website: <a href="https://www.instagram.com/bapenda.pontianak?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==">bappenda.pontianak.go.id</a></p>
             <p>&copy; 2024 BAPENDA Kota Pontianak</p>
         </div>
     </footer>

@@ -35,6 +35,24 @@ class BookingController extends Controller
             return redirect()->back()->with('error', 'Ga Bisa Booking Masa Lalu');
         }
         $status = null;
+
+        // Check for overlapping bookings
+    $existingBooking = Booking::where('room_id', $request->idRuangan)
+    ->where('booking_date', $request->tanggal)
+    ->where('status','confirmed')
+    ->where(function ($query) use ($request) {
+        $query->whereBetween('start_time', [$request->waktu_mulai, $request->waktu_selesai])
+              ->orWhereBetween('end_time', [$request->waktu_mulai, $request->waktu_selesai])
+              ->orWhere(function ($subQuery) use ($request) {
+                  $subQuery->where('start_time', '<=', $request->waktu_mulai)
+                           ->where('end_time', '>=', $request->waktu_selesai);
+              });
+    })
+    ->exists();
+
+if ($existingBooking) {
+    return redirect()->back()->with('error', 'Ruangan sudah dipesan pada waktu tersebut.');
+}
         if(Auth::user()->role == 'admin') {
             $status = 'confirmed';
         } else {

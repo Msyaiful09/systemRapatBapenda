@@ -22,9 +22,6 @@
                     <li class="nav-item">
                         <a class="nav-link text-white" onclick="displayBooking()" href="#">Jadwal Rapat</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" onclick="displayKaryawan()" href="#">Karyawan</a>
-                    </li>
                 </div>
                 <div>
                     <a class="dropdown-item"
@@ -79,7 +76,14 @@
                                             <td class="align-middle text-center">{{$item->name}}</td>
                                             <td class="align-middle text-center">{{$item->location}}</td>
                                             <td class="align-middle text-center">{{$item->capacity}}</td>
-                                            <td class="align-middle text-center">Coming Soon.</td>
+                                            <td class="align-middle text-center d-flex justify-content-center gap-2">                                            
+                                                <a data-bs-target="#updateRuangan" data-bs-toggle="modal" onclick="editRuangan({{$item}})" class="btn btn-warning">Edit</a>                                            
+                                                <form method="POST" action="{{route('rooms.destroy', $item->id)}}" id="form-hapus-{{$item->id}}" enctype="multipart/form-data">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <a onclick="confirmHapus({{$item->id}})" class="btn btn-danger">Hapus</a>
+                                                </form>
+                                            </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -160,41 +164,42 @@
                             </table>
                     </div>
                 </div>
-
-                {{-- <div id="karyawan" class="card mt-4">
-                        <div class="card-header bg-success text-white">List Karyawan</div>
-                            <div class="card-body">
-                                <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#bookingRuangan">Tambah Akun Karyawan</button>
-                                <table class="table table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <th class="align-middle text-center">No</th>
-                                            <th class="align-middle text-center">NIP</th>
-                                            <th class="align-middle text-center">Nama Karyawan</th>
-                                            <th class="align-middle text-center">Aksi</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @php
-                                            $nooo = 1;
-                                        @endphp
-                                        @foreach ($data['karyawan'] as $item)
-                                        <tr>
-                                            <td class="align-middle text-center">{{$nooo++}}</td>
-                                            <td class="align-middle text-center">{{$item->nip}}</td>
-                                            <td class="align-middle text-center">{{$item->name}}</td>
-                                            <td class="align-middle text-center">Coming Soon.</td>
-                                        </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div> --}}
     </div>
 
     {{-- modal --}}
+    <div class="modal fade" id="updateRuangan" tabindex="-1" aria-labelledby="updateRuanganModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="tambahJadwalModalLabel">Edit Ruangan</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                <form method="POST" action="{{route('updateRoom')}}" id="update-ruangan-form" enctype="multipart/form-data">
+                    @csrf
+                    <input type="text" class="form-control" name="idRuangan" id="id_ruangan" value="" hidden>
+                    <div class="mb-3">
+                    <label for="namaRuangan" class="form-label">Nama Ruangan</label>
+                    <input type="text" class="form-control" name="namaRuangan" id="nama_ruangan" value="" required>
+                    </div>
+                    <div class="mb-3">
+                    <label for="lokasiRuangan" class="form-label">Lokasi Ruangan</label>
+                    <input type="text" class="form-control" name="lokasiRuangan" id="lokasi_ruangan" value="" required>
+                    </div>
+                    <div class="mb-3">
+                    <label for="kapasitasRuangan" class="form-label">Kapasitas Ruangan</label>
+                    <input type="text" class="form-control" name="kapasitasRuangan" id="kapasitas_ruangan" value="" required>
+                    </div>
+                </form>
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                <button type="button" class="btn btn-success" onclick="updateRuangan()">Simpan Perubahan</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="modal fade" id="ruanganModal" tabindex="-1" aria-labelledby="tambahRuanganModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -287,6 +292,20 @@
                 }
             });
         }
+        function updateRuangan() {
+            Swal.fire({
+                title: 'Apakah anda yakin ingin mengkonfirmasi pengeditan?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('update-ruangan-form').submit();
+                }
+            });
+        }
         function confirmTolak(id) {
             Swal.fire({
                 title: 'Apakah anda yakin ingin menolak pengajuan?',
@@ -332,6 +351,12 @@
                 }
             });
         }
+        function editRuangan(item) {
+            document.getElementById('id_ruangan').value = item.id;
+            document.getElementById('nama_ruangan').value = item.name;
+            document.getElementById('lokasi_ruangan').value = item.location;
+            document.getElementById('kapasitas_ruangan').value = item.capacity;
+        }
         function confirmTambahRuangan() {
             Swal.fire({
                 title: 'Apakah anda yakin ingin menambah ruangan?',
@@ -350,22 +375,14 @@
         function displayAll() {
             document.getElementById('ruangan').classList.remove('hidden');
             document.getElementById('booking').classList.remove('hidden');
-            document.getElementById('karyawan').classList.remove('hidden');
         }
         function displayRuangan() {
             document.getElementById('ruangan').classList.remove('hidden');
             document.getElementById('booking').classList.add('hidden');
-            document.getElementById('karyawan').classList.add('hidden');
         }
         function displayBooking() {
             document.getElementById('ruangan').classList.add('hidden');
             document.getElementById('booking').classList.remove('hidden');
-            document.getElementById('karyawan').classList.add('hidden');
-        }
-        function displayKaryawan() {
-            document.getElementById('ruangan').classList.add('hidden');
-            document.getElementById('booking').classList.add('hidden');
-            document.getElementById('karyawan').classList.remove('hidden');
         }
     </script>
 @endsection

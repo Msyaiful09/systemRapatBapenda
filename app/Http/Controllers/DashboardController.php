@@ -29,7 +29,7 @@ class DashboardController extends Controller
     {
         if (Auth::user()->role == 'admin') {
             $data = [];
-            $data['ruangan'] = Room::all();
+            $data['ruangan'] = Room::orderBy('id', 'desc')->get();
             $data['booking'] = Booking::all();
             $data['karyawan'] = User::all();
             return view('admin.home', compact('data'));

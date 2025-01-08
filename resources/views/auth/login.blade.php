@@ -56,19 +56,19 @@
 
                     <!-- Registration Link -->
                     <div class="text-center mt-3">
-                        <p>Registrasi akun? <a href="{{ route('register') }}">Daftar akun</a></p>
+                        <p>&copy; 2025 BAPENDA Kota Pontianak</p>
                     </div>
                 </form>
             </div>
         </div>
     </div>
-
     <!-- Footer -->
-    <footer class="text-center mt-4" style="background-color: #343a40; color: white; padding: 10px 0;">
+    <!-- <div class="row text-center pt-3" style="background-color: #343a40; color: white;">
         <p>&copy;2024 BAPENDA Kota Pontianak</p>
-    </footer>
+    </div> -->
 </div>
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" integrity="sha384-tViUnnbYAV00FLIhhi3v/dWt3Jxw4gZQcNoSCxCIFNJVCx7/D55/wXsrNIRANwdD" crossorigin="anonymous">
 <script>
     function togglePasswordVisibility() {
         const passwordField = document.getElementById('password');

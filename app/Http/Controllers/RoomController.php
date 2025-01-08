@@ -13,7 +13,7 @@ class RoomController extends Controller
      */
     public function index()
     {
-        $data = Room::all();
+        $data = Room::orderBy('id', 'desc')->get();
         return view('admin.room.index', compact('data'));
     }
 
@@ -66,18 +66,18 @@ class RoomController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request)
     {
         $this->validate($request, [
-            'name' => ['required','string','max:255'],
-            'location' => ['required','string','max:255'],
-            'capacity' => ['required', 'integer'],
+            'namaRuangan' => ['required','string','max:255'],
+            'lokasiRuangan' => ['required','string','max:255'],
+            'kapasitasRuangan' => ['required', 'integer'],
         ]);
 
-        $room = Room::where('id', $id)->first();
-        $room->name = $request->name;
-        $room->location = $request->location;
-        $room->capacity = $request->capacity;
+        $room = Room::where('id', $request->idRuangan)->first();
+        $room->name = $request->namaRuangan;
+        $room->location = $request->lokasiRuangan;
+        $room->capacity = $request->kapasitasRuangan;
         $room->save();
 
         return redirect()->back()->with('success', 'Data Ruangan Berhasil Di Perbaharui.');

@@ -6,6 +6,10 @@
     <title>Dashboard Karyawan - BAPENDA Kota Pontianak</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
+
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -174,7 +178,7 @@
         <div class="card" id="jadwal-ruangan-section" style="display:none;">
             <h3>Jadwal Rapat Ruangan</h3>
             <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#bookingRuangan">Ajukan Booking Ruangan</button>
-            <table class="table">
+            <table class="table" id="jadwalTable">
                 <thead>
                     <tr>
                         <th>No</th>
@@ -224,6 +228,16 @@
     <footer>
         <p>&copy; 2024 BAPENDA Kota Pontianak. All Rights Reserved.</p>
     </footer>
+    <script>
+    $(document).ready(function () {
+        $('#jadwalTable').DataTable({
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/1.13.5/i18n/Indonesian.json" // For Indonesian translations
+            },
+            "order": [[0, "asc"]] // Sort by the first column (No) ascending
+        });
+    });
+</script>
 
 
     {{-- modal --}}
@@ -286,6 +300,8 @@
                 }
             });
         }
+        document.getElementById('ruangan-section').style.display = 'block';
+        document.getElementById('jadwal-ruangan-section').style.display = 'block';
         document.getElementById('beranda').addEventListener('click', function() {
             document.getElementById('ruangan-section').style.display = 'block';
             // document.getElementById('beranda-section').style.display = 'none';
@@ -307,5 +323,8 @@
             // document.getElementById('karyawan-section').style.display = 'none';
         });
     </script>
+
+
+
 </body>
 </html>
